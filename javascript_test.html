@@ -1,0 +1,135 @@
+
+   <head>
+   <style>
+    div {
+    display: inline-block;
+   } 
+   </style>
+
+   </head>
+   
+   <body>
+      <br><br>
+      
+
+      <div id="demo">5</div>
+      
+      <br>
+      
+      Pz= <a href="asdf.htm" id="pz">5</a><br>
+      <br>
+      
+      Kaina1= <div class="pz2">7.05</div>
+      <br>
+
+      Kaina2= <div class="pz2">120</div>
+      <br>
+
+      <input type="button" onclick="Plus()" value="+" />
+      %
+      <br>
+      <br>
+      <br>
+      
+      Ob= <div id="ob"></div>
+      <br>
+
+
+
+
+<h1>Kaina:</h1>
+
+<p>Įveskite procentą:</p>
+
+
+<input id="numb" value="20">
+
+<button type="button" onclick="myFunction()">Submit</button>
+
+<p id="demo1">5</p>
+
+      
+</body>
+
+
+
+<script type="text/javascript">
+
+s= "moron";
+function sayHello(s) {
+   document.getElementById("demo").innerHTML =5*0.21;
+};
+function du() {
+   return 2*2;
+};
+
+document.write("<br>PIRMAS BR<br>");
+document.write(Date());
+document.write("<br>Po DATE BR<br>");
+document.write(du());
+document.write("<br>END du<br><br>");
+
+x = parseFloat(document.getElementById("pz").innerHTML);
+
+function myFunction() {
+    var text;
+
+    // Get the value of the input field with id="numb"
+
+    y= parseFloat(document.getElementById("numb").value) * 0.01;
+
+    // If x is Not a Number or less than one or greater than 10
+    text=x+(x*y);
+
+    document.getElementById("pz").innerHTML = text;
+
+}
+
+var prices = [];
+for (var i = 0; i < document.getElementsByClassName("pz2").length; i++) {
+    prices.push(parseFloat(document.getElementsByClassName("pz2")[i].innerHTML));
+}
+
+var percent=0;
+
+function Plus() {
+  var new_price;
+  percent=percent+1;
+  for (var i = 0; i < prices.length; i++) {
+      var y = prices[i];
+      var x = y*(percent/100);
+      new_price =x+y;
+      console.log(prices);
+      document.getElementsByClassName("pz2")[i].innerHTML = new_price;
+  }
+
+}
+
+
+var setAge = function (newAge) {
+  this.age = newAge;
+};
+// now we make bob
+var bob = new Object();
+bob.age = 30;
+// 
+// and down here we just use the method we already made
+bob.setAge = setAge;
+  
+// change bob's age to 50 here
+
+d=document.getElementById("numb").value;
+d=parseInt(d);
+document.write(d);
+bob.setAge(d);
+document.getElementById("ob").innerHTML = bob.age*5;
+
+
+
+g="SKLIAUSTŲ FUNKCIJA";
+(function sayHello2(g) {
+   document.write(g)
+}(g));
+            
+  </script>
+
