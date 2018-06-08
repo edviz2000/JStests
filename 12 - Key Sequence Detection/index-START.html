@@ -6,7 +6,19 @@
   <script type="text/javascript" src="http://www.cornify.com/js/cornify.js"></script>
 </head>
 <body>
+<p id="demo"></p>
+
 <script>
+	pressed=[];
+	secret='wes';
+	window.addEventListener( 'keyup', e => {
+		console.log(e);
+		pressed.push(e.key);
+		pressed.slice(-secret - 1, pressed.length-secret.length);
+		if (pressed.join('').includes(secret)) {
+			document.getElementById("demo").innerHTML = "DING";
+		};
+	})
 </script>
 </body>
 </html>
