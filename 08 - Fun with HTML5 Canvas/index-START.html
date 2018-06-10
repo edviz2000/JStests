@@ -7,6 +7,31 @@
 <body>
 <canvas id="draw" width="800" height="800"></canvas>
 <script>
+	canvas=document.querySelector('#draw');
+	c=canvas.getContext('2d');
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+	c.strokeStyle="#345435";
+	c.lineJoin="round(20)";
+	c.lineCap="round";
+
+let isDrawing = false;
+let lastX = 0;
+let lastY = 0;
+let hue = 0;
+let direction = true;
+function draw(e) {
+	if (!isDrawing) {
+		return false; 
+	}	
+	console.log(e);
+}
+
+canvas.addEventListener('mousemove', draw);
+canvas.addEventListener('mousedown', () => isDrawing = true);
+canvas.addEventListener('mouseup', () => isDrawing = 0);
+canvas.addEventListener('mouseout', () => isDrawing = 0);
+
 </script>
 
 <style>
