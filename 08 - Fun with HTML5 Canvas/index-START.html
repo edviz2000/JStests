@@ -12,23 +12,41 @@
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
 	c.strokeStyle="#345435";
-	c.lineJoin="round(20)";
+	c.lineJoin="round";
 	c.lineCap="round";
+	c.lineWidth=5;
+	c.globalCompositeOperation="soft-light";
+	c.globalAlpha = 0.4;
 
 let isDrawing = false;
 let lastX = 0;
 let lastY = 0;
 let hue = 0;
 let direction = true;
+
 function draw(e) {
 	if (!isDrawing) {
 		return false; 
 	}	
 	console.log(e);
+	c.strokeStyle=`hsl(${hue},100%,50%)`; 
+	c.beginPath();
+	c.moveTo(lastX,lastY);
+	c.lineTo(e.offsetX,e.offsetY);
+	c.stroke();
+	lastX=e.offsetX;
+	lastY=e.offsetY;
+	hue++;
+	c.lineWidth++;
 }
 
 canvas.addEventListener('mousemove', draw);
-canvas.addEventListener('mousedown', () => isDrawing = true);
+canvas.addEventListener('mousedown', (e) => {
+	isDrawing = true;
+	lastX=e.offsetX;
+	lastY=e.offsetY;
+	c.lineWidth=5;
+});
 canvas.addEventListener('mouseup', () => isDrawing = 0);
 canvas.addEventListener('mouseout', () => isDrawing = 0);
 
