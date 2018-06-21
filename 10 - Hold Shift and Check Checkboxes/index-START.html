@@ -99,6 +99,55 @@
   </div>
 
 <script>
+
+shift=false;
+currentY=0;
+lastY=1000;
+
+function clicked(e) {
+  // console.log(e.srcElement.offsetTop);
+  // console.log(e);
+  checked=[];
+  lastY=currentY;
+  currentY=e.srcElement.offsetTop;
+  checks.forEach(check => { if (!check.checked) { 
+         if (((check.offsetTop>lastY) && (check.offsetTop<currentY)) || ((check.offsetTop<lastY) && (check.offsetTop>currentY))) {
+            if (shift) {check.checked=true};
+         }
+     }});
+  // checks.forEach(check => { if (check.offsetTop > currentY ) { check.checked=true; }}); 
+  // console.log(checked);
+  // console.log(lastY,currentY);
+}
+
+
+
+function ch_shift(e) {
+  if (e.key=="Shift"){
+    shift=true;
+  }
+}
+
+function ch_no_shift(e) {
+  if (e.key=="Shift"){
+    shift=false;
+  }
+}
+
+checks=document.querySelectorAll("input");
+checks.forEach(check => check.addEventListener('change', clicked));
+window.addEventListener('keydown', ch_shift);
+window.addEventListener('keyup', ch_no_shift);
+
+
+
+// var checksarr = [];
+// for(var i = checks.length; i--; checksarr.unshift(checks[i]));
+
+// positionY = checksarr.map(check => check.offsetTop);
+// console.table(positionY);
+
 </script>
+
 </body>
 </html>
