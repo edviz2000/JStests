@@ -182,6 +182,23 @@
     </li>
   </ul>
 <script>
+
+nodes = Array.from(document.querySelectorAll('[data-time]'));
+
+seconds = nodes
+  .map(node => node.dataset.time)
+  .map(time => {
+    const [mins,secs] = time.split(':').map(parseFloat);
+    // console.log(secs);
+    return mins*60 +secs;
+  })
+  .reduce((total, vidSeconds) => total + vidSeconds);
+
+console.log(seconds);
+
+
+
+
 </script>
 </body>
 </html>

@@ -7,7 +7,7 @@
 <body>
 
   <div class="hero">
-    <h1 contenteditable>🔥WOAH!</h1>
+    <h1 contenteditable>🔥TEST</h1>
   </div>
 
   <style>
@@ -35,6 +35,33 @@
   </style>
 
 <script>
+	hero = document.querySelector('.hero');
+	text = hero.querySelector('h1');
+	walk=50; // 100px;
+
+	console.log(hero, text);
+
+	function shadow(e) {
+		const {offsetWidth: width, offsetHeight: height} = hero;
+		let {offsetX: x, offsetY: y} = e;
+		if (this!==e.target) {
+			x = x + e.target.offsetLeft;
+			y = y + e.target.offsetTop;
+		}
+
+		xWalk = Math.round(x/width*walk) - (walk/2)
+		yWalk = Math.round(y/height*walk) - (walk/2)
+
+		// console.log(xWalk,yWalk);
+
+		text.style.textShadow = `${xWalk}px ${yWalk}px ${xWalk-yWalk}px red, ${xWalk * -1}px ${yWalk}px ${xWalk-yWalk}px rgba(0,0,255, 0.5`;
+;
+		// console.log(x,y);
+	}
+
+	hero.addEventListener('mousemove', shadow);
+
 </script>
 </body>
 </html>
+ 

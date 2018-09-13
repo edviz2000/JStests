@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <meta charset="UTF-8">
+  <title>HTML Video Player</title>
+</head>
+<body>
+
+   <div id="videoplayer">
+
+   </div>
+
+</body>
+</html>
+
+<script>
+var videoList = ["d:/!darbai/Video/Patrol_USM.mp4", "d:/!darbai/Video/Solo.mp4","d:/!darbai/Video/utepo_cctv_mode.mp4","d:/!darbai/Video/rastelis.mp4","d:/!darbai/Video/gorke.mp4"];
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]]; // eslint-disable-line no-param-reassign
+    }
+}
+
+function ended() {
+  shuffleArray(videoList);
+  document.getElementById("videoplayer").innerHTML = "<video id='rawvideo' autoplay width='460' height='259' poster='' id='bgvid'><source src='" + videoList[0] + "' type='video/mp4'></video>";
+  video =  document.querySelector('#rawvideo');
+  video.addEventListener('ended', ended, false);
+}
+
+shuffleArray(videoList);
+
+document.getElementById("videoplayer").innerHTML="<video id='rawvideo' autoplay width='460' height='259' poster='' id='bgvid'><source src='" + videoList[0] + "' type='video/mp4'></video>";
+
+video =  document.querySelector('#rawvideo');
+video.addEventListener('ended', ended, false);
+</script>
