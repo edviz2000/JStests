@@ -15,6 +15,22 @@
   </div>
 
 <script>
+	speed = document.querySelector('.speed');
+	bar = document.querySelector('.speed-bar');
+	video = document.querySelector('.flex');
+
+	speed.addEventListener('mousemove', function (e) { // cia arrow netinka =>, nes 'this' ima kaip window objekta, ne diva 
+		y = e.pageY - this.offsetTop;
+		percent = y / this.offsetHeight;
+		min=0.4;
+		max=4;
+		height = Math.round(percent*100) + '%';
+		rate =  percent * (max- min) + min;
+		bar.style.height = height;
+		bar.textContent =  rate.toFixed(1) + 'x';
+		video.playbackRate = rate;
+	})
+
 </script>
 </body>
 </html>

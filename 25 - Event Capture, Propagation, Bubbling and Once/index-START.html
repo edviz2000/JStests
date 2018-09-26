@@ -40,6 +40,15 @@
 <button></button>
 <script>
 
+divs = document.querySelectorAll('div');
+
+function logText(e) {
+  console.log(this.classList.value);
+  // e.stopPropagation();
+}
+
+divs.forEach(div => div.addEventListener('click', logText, {capture:true, once:true})); // once - norima tik viena karta trigerinti eventa ir nuimti, su butonais gerai
+
 </script>
 </body>
 </html>

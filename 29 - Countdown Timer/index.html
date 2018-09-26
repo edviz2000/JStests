@@ -24,6 +24,62 @@
     </div>
   </div>
 
-  <script src="scripts-START.js"></script>
+  <script>
+
+  timerDisplay = document.querySelector('.display__time-left');
+  let countdown;
+  endTime = document.querySelector('.display__end-time');
+  buttons =  document.querySelectorAll('[data-time]');
+
+   function timer (seconds) {    
+      // setInterval(function { // negerai veikia kartais
+        // seconds--;
+      // },1000);
+      clearInterval(countdown);
+
+      now = Date.now();
+      then = now + seconds*1000; 
+      displayEndTime(then);
+
+
+      countdown = setInterval(() =>  {
+        secondsLeft =  Math.round((then - Date.now())/1000);
+        if (secondsLeft < 0) {
+          clearInterval(countdown);
+          return;
+        }
+        displayTimeLeft(secondsLeft);
+
+      },1000);
+  }
+
+  function displayTimeLeft (seconds) {
+      minutes = Math.floor(seconds/60);
+      remainSeconds = seconds % 60;
+      zero = remainSeconds < 10 ? '0' : '';
+      timerDisplay.textContent = minutes + ':' + zero + remainSeconds;
+      document.title =  minutes + ':' + zero + remainSeconds;
+  }
+
+  function displayEndTime (timestamp) {
+    end = new Date(timestamp);
+    hours = end.getHours();
+    minutes = end.getMinutes();
+    endTime.textContent = `Be back at ${hours}:${minutes}`;
+  }
+
+  function startTimer (e) {
+    timer(parseInt(this.dataset.time));
+  }
+
+  buttons.forEach(button => button.addEventListener('click', startTimer));
+  document.customForm.addEventListener('submit', function (e) {
+    e.preventDefault(); // nesubmitinti
+    mins = this.minutes.value;
+    timer(mins*60);
+    this.reset();
+  });
+
+  </script>
 </body>
 </html>
